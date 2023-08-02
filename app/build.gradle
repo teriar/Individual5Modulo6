@@ -30,9 +30,16 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures{
+        viewBinding true
+    }
 }
 
 dependencies {
+
+    def retro_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retro_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retro_version"
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
