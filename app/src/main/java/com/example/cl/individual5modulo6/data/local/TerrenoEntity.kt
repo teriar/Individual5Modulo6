@@ -1,4 +1,16 @@
 package com.example.cl.individual5modulo6.data.local
 
-class TerrenoEntity {
-}
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
+
+@Entity(tableName = "tabla_terreno")
+data class TerrenoEntity(
+    @PrimaryKey val id: String,
+    val precio: Int,
+    val tipo: String,
+    val imagen: String
+)
+
+
+
