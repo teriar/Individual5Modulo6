@@ -23,4 +23,6 @@ class TerrenoVM(application: Application):AndroidViewModel(application){
         repositorio.cargarTerreno()
 
     }
+    fun getTerrenos(id:String) = repositorio.getTerreno(id)
+
 }

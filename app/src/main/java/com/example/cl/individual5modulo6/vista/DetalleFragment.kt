@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import coil.load
 import com.example.cl.individual5modulo6.R
 import com.example.cl.individual5modulo6.databinding.FragmentDetalleBinding
 
@@ -14,7 +16,9 @@ private const val ARG_PARAM1 = "id"
 
 
 
+
 class DetalleFragment : Fragment() {
+    private val terrenoVM: TerrenoVM by activityViewModels()
     private lateinit var binding:FragmentDetalleBinding
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -23,7 +27,7 @@ class DetalleFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
+        param1 = it.getString(ARG_PARAM1)
 
         }
     }
@@ -32,7 +36,13 @@ class DetalleFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding= FragmentDetalleBinding.inflate(layoutInflater,container,false)
-         binding.txtId.text = param1
+        //
+        terrenoVM.getTerrenos(param1.toString()).observe(viewLifecycleOwner){
+            binding.txtId.text = it.id
+            binding.imageView.load(it.imagen)
+            binding.txtType.text = it.tipo
+            binding.txtPrecio.text = it.precio.toString()
+        }
         return binding.root
 
     }
