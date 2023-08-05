@@ -1,9 +1,12 @@
 package com.example.cl.individual5modulo6.vista
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.cl.individual5modulo6.R
 import com.example.cl.individual5modulo6.data.local.TerrenoEntity
 import com.example.cl.individual5modulo6.data.remote.Terreno
 import com.example.cl.individual5modulo6.databinding.ItemTerrenoBinding
@@ -40,6 +43,15 @@ class AdapterTerreno: RecyclerView.Adapter<AdapterTerreno.ItemTerrenoViewHolder>
     class ItemTerrenoViewHolder(val v:ItemTerrenoBinding):RecyclerView.ViewHolder(v.root) {
         fun bind(terreno: TerrenoEntity) {
              v.imgTerreno.load(terreno.imagen)
+            val bundle = Bundle()
+            bundle.putString("id",terreno.id)
+            //bundle.putString("imagen", terreno.imagen)
+            //bundle.putString("precio",terreno.precio.toString())
+
+            v.imgTerreno.setOnClickListener{
+                Navigation.findNavController(v.root).navigate(R.id.action_listadoFragment_to_detalleFragment, bundle)
+            }
+
         }
     }
 }
